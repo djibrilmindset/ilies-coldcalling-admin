@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1a1614">
+<title>Ilies · Admin Live Cold Calling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,900&family=Departure+Mono&family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper:#f3ecdf; --paper-soft:#f9f4ea; --ink:#1a1614; --ink-soft:#3a322c; --ink-mute:#6e645a;
+  --ember:#e85d2c; --ember-deep:#c73e1a; --ember-soft:rgba(232,93,44,.12);
+  --salmon:#e8a895; --salmon-soft:rgba(232,168,149,.18);
+  --jade:#1d8a6f; --crit:#c73e3a; --indigo:#4a3c8c; --line:rgba(26,22,20,.15);
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --mono:'Departure Mono',ui-monospace,monospace;
+  --serif:'EB Garamond',Georgia,serif;
+  --r-card:6px; --r-pill:999px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{padding:24px 18px 80px;max-width:1100px;margin:0 auto;min-height:100vh}
+header.app-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;padding:18px 0 22px;border-bottom:1.5px solid var(--line);margin-bottom:26px;position:sticky;top:0;background:rgba(243,236,223,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:50}
+.brand{display:flex;flex-direction:column;gap:4px}
+.brand__title{font-family:var(--display);font-weight:900;font-size:1.5rem;color:var(--ink);letter-spacing:-.01em;line-height:1}
+.brand__sub{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute)}
+.badge-cat{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:var(--r-pill);background:var(--salmon-soft);color:var(--ink);font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.badge-cat::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--salmon)}
+.skool-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:4px;box-shadow:3px 3px 0 var(--ember-deep);transition:transform .15s}
+.skool-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ember-deep)}
+.window-info{display:flex;flex-wrap:wrap;gap:18px;padding:14px 18px;background:rgba(255,252,245,.7);border:1.5px dashed var(--line);border-radius:var(--r-card);margin-bottom:22px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-mute)}
+.window-info b{color:var(--ink);font-weight:700}
+.stats{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+.stat{flex:1;min-width:140px;padding:18px 16px;background:var(--paper-soft);border:1.5px solid var(--line);border-radius:var(--r-card);box-shadow:4px 4px 0 rgba(26,22,20,.06)}
+.stat b{display:block;font-family:var(--display);font-weight:900;font-size:2rem;color:var(--ink);line-height:1}
+.stat span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin-top:4px}
+.student-card{background:var(--paper-soft);border:1.5px solid var(--line);border-radius:var(--r-card);padding:22px 22px 18px;margin-bottom:18px;box-shadow:5px 5px 0 rgba(26,22,20,.05);transition:transform .15s}
+.student-card:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 rgba(26,22,20,.08)}
+.student-card__head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--line)}
+.student-card__name{font-family:var(--display);font-weight:900;font-size:1.25rem;color:var(--ink);letter-spacing:-.005em}
+.student-card__email{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink-mute);text-transform:lowercase}
+.student-card__meta{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);text-align:right}
+.student-card__meta b{display:block;color:var(--ember-deep);font-size:14px;font-family:var(--display);font-weight:800;margin-top:3px}
+.question{background:rgba(255,252,245,.7);border-left:3px solid var(--salmon);padding:14px 16px;margin:10px 0;border-radius:0 4px 4px 0}
+.question:last-child{margin-bottom:0}
+.question__date{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px}
+.question__title{font-family:var(--display);font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:8px;line-height:1.35}
+.question__detail{font-family:var(--serif);font-style:italic;color:var(--ink-soft);font-size:.93rem;line-height:1.5}
+.question__detail strong{font-style:normal;color:var(--ember-deep)}
+.question__finale{margin-top:10px;padding:10px 12px;background:var(--salmon-soft);border-radius:4px;font-family:var(--serif);font-weight:600;color:var(--ink);font-size:.95rem;line-height:1.45}
+.question__finale::before{content:'? ';font-family:var(--mono);font-weight:700;color:var(--ember-deep)}
+.status-pill{display:inline-block;padding:3px 9px;border-radius:var(--r-pill);font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.status-pill.deepening{background:rgba(74,60,140,.12);color:var(--indigo)}
+.status-pill.qualified{background:rgba(232,93,44,.14);color:var(--ember-deep)}
+.status-pill.awaiting_djibril{background:rgba(29,138,111,.14);color:var(--jade)}
+.status-pill.answered{background:rgba(26,22,20,.85);color:var(--paper)}
+.empty{padding:60px 30px;text-align:center;color:var(--ink-mute);font-family:var(--serif);font-style:italic;font-size:1.05rem}
+.empty b{display:block;font-family:var(--display);font-weight:900;font-size:1.5rem;color:var(--ink);margin-bottom:12px;font-style:normal}
+.error{padding:20px;background:rgba(199,62,58,.08);border:1.5px solid rgba(199,62,58,.3);border-radius:var(--r-card);color:var(--crit);font-family:var(--mono);font-size:13px;text-align:center}
+.refresh-btn{position:fixed;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;background:var(--ink);color:var(--paper);border:none;cursor:pointer;font-family:var(--mono);font-size:18px;box-shadow:0 6px 18px rgba(26,22,20,.25);transition:transform .15s}
+.refresh-btn:hover{transform:rotate(-90deg) scale(1.05)}
+.refresh-btn:active{transform:rotate(-180deg) scale(.95)}
+@media (max-width:640px){
+  body{padding:18px 14px 80px}
+  .brand__title{font-size:1.25rem}
+  .stat{padding:14px 12px}
+  .stat b{font-size:1.6rem}
+  .student-card{padding:18px 16px 14px}
+  .skool-btn{padding:8px 14px;font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<header class="app-head">
+  <div class="brand">
+    <div class="brand__title">Admin <span id="hdr-intervenant">Ilies</span></div>
+    <div class="brand__sub">Live · <span id="hdr-category">Cold Calling</span></div>
+  </div>
+  <a class="skool-btn" id="skool-link" href="https://www.skool.com/live/s26FW9vssKc" target="_blank" rel="noopener">Ouvrir le live Skool ↗</a>
+</header>
+
+<div class="window-info" id="window-info">
+  <span>Fenêtre éphémère 7 jours · reset auto J+1 00h post-live</span>
+</div>
+
+<div class="stats" id="stats"></div>
+
+<div id="content"><div class="empty">Chargement…</div></div>
+
+<button class="refresh-btn" id="btn-refresh" title="Rafraîchir" aria-label="Rafraîchir">↻</button>
+
+<script>
+(function(){
+  const TOKEN = '6769c21dee7b730b478caecc362c13a0';
+  const API = 'https://nbnbsljqtolzzuqnkyae.supabase.co/functions/v1/qa-handler/qa/live-coach/' + TOKEN;
+
+  function fmtDate(iso){
+    const d = new Date(iso);
+    const j = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'][d.getDay()];
+    return j + ' ' + d.getDate() + '/' + (d.getMonth()+1) + ' · ' + String(d.getHours()).padStart(2,'0') + 'h' + String(d.getMinutes()).padStart(2,'0');
+  }
+  function escapeHtml(s){ return String(s||'').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'})[c]); }
+  function statusLabel(s){
+    return ({deepening:'creusage en cours', qualified:'creusée', awaiting_djibril:'envoyée à Djibril', answered:'répondue par Djibril'})[s] || s;
+  }
+
+  function renderStudent(group){
+    const stu = group.student;
+    const qs = group.questions;
+    const dayNum = qs.length;
+    return `<div class="student-card">
+      <div class="student-card__head">
+        <div>
+          <div class="student-card__name">${escapeHtml(stu.full_name || stu.first_name || stu.email)}</div>
+          <div class="student-card__email">${escapeHtml(stu.email || '')}</div>
+        </div>
+        <div class="student-card__meta">
+          ${dayNum} question${dayNum>1?'s':''} cette semaine
+          <b>~${Math.min(15, 10 + dayNum * 2)} min</b>
+        </div>
+      </div>
+      ${qs.map(q => `
+        <div class="question">
+          <div class="question__date">${fmtDate(q.created_at)} · <span class="status-pill ${q.status}">${statusLabel(q.status)}</span></div>
+          <div class="question__title">${escapeHtml(q.initial)}</div>
+          ${q.vraie_problematique ? `<div class="question__detail"><strong>Vraie problématique :</strong> ${escapeHtml(q.vraie_problematique)}</div>` : ''}
+          ${q.vrai_besoin ? `<div class="question__detail" style="margin-top:6px"><strong>Vrai besoin :</strong> ${escapeHtml(q.vrai_besoin)}</div>` : ''}
+          ${q.question_finale ? `<div class="question__finale">${escapeHtml(q.question_finale)}</div>` : ''}
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  async function load(){
+    document.getElementById('content').innerHTML = '<div class="empty">Chargement…</div>';
+    try {
+      const r = await fetch(API);
+      if(r.status === 401){
+        document.getElementById('content').innerHTML = '<div class="error">Token invalide. Vérifie l\'URL d\'accès.</div>';
+        return;
+      }
+      const d = await r.json();
+      if(d.error){
+        document.getElementById('content').innerHTML = '<div class="error">' + escapeHtml(d.error) + '</div>';
+        return;
+      }
+      // Header
+      document.getElementById('hdr-intervenant').textContent = d.category.intervenant;
+      document.getElementById('hdr-category').textContent = d.category.label;
+      document.title = d.category.intervenant + ' · Admin Live ' + d.category.label;
+      if(d.category.skool_url){
+        document.getElementById('skool-link').href = d.category.skool_url;
+      }
+      // Window info
+      const sinceDate = new Date(d.window.since);
+      document.getElementById('window-info').innerHTML =
+        '<span>Fenêtre depuis <b>' + sinceDate.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'short'}) + '</b></span>' +
+        '<span>Dernier live : <b>' + d.window.last_live + '</b></span>' +
+        '<span>Reset auto à minuit le lendemain du prochain live</span>';
+      // Stats
+      document.getElementById('stats').innerHTML =
+        '<div class="stat"><b>' + d.total_students + '</b><span>élèves cette semaine</span></div>' +
+        '<div class="stat"><b>' + d.total_questions + '</b><span>questions au total</span></div>' +
+        '<div class="stat"><b>~' + Math.max(1, Math.round(d.total_students * 12.5)) + ' min</b><span>temps live estimé</span></div>';
+      // Content
+      if(d.students.length === 0){
+        document.getElementById('content').innerHTML = '<div class="empty"><b>Aucune question cette semaine</b>Les élèves saisissent leur problématique du jour sur leur tracking. Elles apparaîtront ici dès qu\'elles concernent ta catégorie.</div>';
+      } else {
+        document.getElementById('content').innerHTML = d.students.map(renderStudent).join('');
+      }
+    } catch(e){
+      document.getElementById('content').innerHTML = '<div class="error">Erreur réseau : ' + escapeHtml(e.message) + '</div>';
+    }
+  }
+
+  document.getElementById('btn-refresh').addEventListener('click', load);
+  load();
+  // Auto-refresh toutes les 60s
+  setInterval(load, 60000);
+})();
+</script>
+</body>
+</html>
