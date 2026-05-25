@@ -15,7 +15,7 @@
   --paper:#f3ecdf; --paper-soft:#f9f4ea; --ink:#1a1614; --ink-soft:#3a322c; --ink-mute:#6e645a;
   --ember:#e85d2c; --ember-deep:#c73e1a; --ember-soft:rgba(232,93,44,.12);
   --salmon:#e8a895; --salmon-soft:rgba(232,168,149,.18);
-  --jade:#1d8a6f; --crit:#c73e3a; --indigo:#4a3c8c; --line:rgba(26,22,20,.15);
+  --jade:#1d8a6f; --jade-soft:rgba(29,138,111,.12); --crit:#c73e3a; --indigo:#4a3c8c; --line:rgba(26,22,20,.15);
   --display:'Bricolage Grotesque',system-ui,sans-serif;
   --mono:'Departure Mono',ui-monospace,monospace;
   --serif:'EB Garamond',Georgia,serif;
@@ -56,14 +56,41 @@ header.app-head{display:flex;align-items:center;justify-content:space-between;fl
 .status-pill{display:inline-block;padding:3px 9px;border-radius:var(--r-pill);font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 .status-pill.deepening{background:rgba(74,60,140,.12);color:var(--indigo)}
 .status-pill.qualified{background:rgba(232,93,44,.14);color:var(--ember-deep)}
-.status-pill.awaiting_djibril{background:rgba(29,138,111,.14);color:var(--jade)}
+.status-pill.awaiting_djibril,.status-pill.awaiting_admin{background:rgba(29,138,111,.14);color:var(--jade)}
 .status-pill.answered{background:rgba(26,22,20,.85);color:var(--paper)}
+.status-pill.treated_in_live{background:rgba(212,149,26,.15);color:var(--gold, #d4951a)}
+.status-pill.auto_answered{background:rgba(74,60,140,.12);color:var(--indigo)}
+/* Answer buttons */
+.answer-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.answer-actions .btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border-radius:var(--r-pill);border:1.5px solid var(--line);cursor:pointer;transition:all .15s;background:rgba(255,252,245,.9);color:var(--ink)}
+.answer-actions .btn:hover{transform:translateY(-1px)}
+.answer-actions .btn--answer{background:var(--jade);border-color:var(--jade);color:var(--paper);box-shadow:3px 3px 0 rgba(29,138,111,.4)}
+.answer-actions .btn--answer:hover{background:var(--jade);box-shadow:4px 4px 0 rgba(29,138,111,.5)}
+.answer-actions .btn--live{background:var(--ember);border-color:var(--ember);color:var(--paper);box-shadow:3px 3px 0 var(--ember-deep)}
+.answer-actions .btn--live:hover{background:var(--ember);box-shadow:4px 4px 0 var(--ember-deep)}
+.answer-actions .btn--disabled{opacity:.4;pointer-events:none}
+.answer-actions .btn--done{background:var(--ink-mute);border-color:var(--ink-mute);color:var(--paper);opacity:.7;pointer-events:none}
+/* Answer textarea */
+.answer-area{margin-top:12px;animation:fieldIn .3s ease}
+.answer-area textarea{width:100%;min-height:80px;padding:12px;font-family:var(--serif);font-size:.95rem;line-height:1.5;background:rgba(255,252,245,.95);border:1.5px solid var(--jade);border-radius:var(--r-card);color:var(--ink);outline:none;resize:vertical}
+.answer-area textarea:focus{border-color:var(--jade);background:#fff}
+.answer-area .answer-actions-submit{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.answer-area .btn-submit{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 20px;border-radius:var(--r-pill);border:none;cursor:pointer;transition:all .15s;background:var(--jade);color:var(--paper);box-shadow:3px 3px 0 rgba(29,138,111,.4)}
+.answer-area .btn-submit:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 rgba(29,138,111,.5)}
+.answer-area .btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.answer-area .btn-cancel{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 20px;border-radius:var(--r-pill);border:1.5px solid var(--line);cursor:pointer;transition:all .15s;background:rgba(255,252,245,.9);color:var(--ink-soft)}
+.answer-area .btn-cancel:hover{border-color:var(--crit);color:var(--crit)}
+.answer-area .answer-msg{margin-top:8px;font-family:var(--mono);font-size:9px;letter-spacing:.08em;padding:8px 10px;border-radius:var(--r-card);animation:fieldIn .25s ease}
+.answer-area .answer-msg.ok{background:var(--jade-soft);color:var(--jade);border:1px solid var(--jade)}
+.answer-area .answer-msg.err{background:rgba(199,62,58,.08);color:var(--crit);border:1px solid rgba(199,62,58,.3)}
 .empty{padding:60px 30px;text-align:center;color:var(--ink-mute);font-family:var(--serif);font-style:italic;font-size:1.05rem}
 .empty b{display:block;font-family:var(--display);font-weight:900;font-size:1.5rem;color:var(--ink);margin-bottom:12px;font-style:normal}
 .error{padding:20px;background:rgba(199,62,58,.08);border:1.5px solid rgba(199,62,58,.3);border-radius:var(--r-card);color:var(--crit);font-family:var(--mono);font-size:13px;text-align:center}
+.success-msg{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:999;padding:14px 24px;background:var(--jade);color:var(--paper);font-family:var(--mono);font-size:11px;letter-spacing:.08em;border-radius:var(--r-pill);box-shadow:0 6px 20px rgba(26,22,20,.2);animation:fieldIn .3s ease}
 .refresh-btn{position:fixed;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;background:var(--ink);color:var(--paper);border:none;cursor:pointer;font-family:var(--mono);font-size:18px;box-shadow:0 6px 18px rgba(26,22,20,.25);transition:transform .15s}
 .refresh-btn:hover{transform:rotate(-90deg) scale(1.05)}
 .refresh-btn:active{transform:rotate(-180deg) scale(.95)}
+@keyframes fieldIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 @media (max-width:640px){
   body{padding:18px 14px 80px}
   .brand__title{font-size:1.25rem}
@@ -97,7 +124,7 @@ header.app-head{display:flex;align-items:center;justify-content:space-between;fl
 <script>
 (function(){
   const TOKEN = '6769c21dee7b730b478caecc362c13a0';
-  const API = 'https://nbnbsljqtolzzuqnkyae.supabase.co/functions/v1/qa-handler/qa/live-coach/' + TOKEN;
+  const API_BASE = 'https://nbnbsljqtolzzuqnkyae.supabase.co/functions/v1/qa-handler/qa/live-coach/' + TOKEN;
 
   function fmtDate(iso){
     const d = new Date(iso);
@@ -106,7 +133,55 @@ header.app-head{display:flex;align-items:center;justify-content:space-between;fl
   }
   function escapeHtml(s){ return String(s||'').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'})[c]); }
   function statusLabel(s){
-    return ({deepening:'creusage en cours', qualified:'creusée', awaiting_djibril:'envoyée à Djibril', answered:'répondue par Djibril'})[s] || s;
+    return ({deepening:'creusage en cours', qualified:'creusée', awaiting_djibril:'à répondre', awaiting_admin:'à répondre', answered:'répondue', treated_in_live:'traité en live', auto_answered:'réponse automatique'})[s] || s;
+  }
+
+  function showMsg(text, type){
+    const el = document.createElement('div');
+    el.className = 'success-msg';
+    el.textContent = text;
+    if(type === 'err') el.style.background = 'var(--crit)';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3500);
+  }
+
+  async function answerQuestion(qId, answer, callback){
+    const api = API_BASE + '/answer/' + qId;
+    try {
+      const r = await fetch(api, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ answer })
+      });
+      const d = await r.json();
+      if(d.success){
+        showMsg('✅ Réponse envoyée à l\'élève !');
+        if(callback) callback();
+      } else {
+        showMsg('❌ ' + (d.error || 'Erreur'), 'err');
+      }
+    } catch(e){
+      showMsg('❌ Erreur réseau : ' + e.message, 'err');
+    }
+  }
+
+  async function markAsLive(qId, callback){
+    const api = API_BASE + '/live/' + qId;
+    try {
+      const r = await fetch(api, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'}
+      });
+      const d = await r.json();
+      if(d.success){
+        showMsg('✅ Marquée comme « traité en live »');
+        if(callback) callback();
+      } else {
+        showMsg('❌ ' + (d.error || 'Erreur'), 'err');
+      }
+    } catch(e){
+      showMsg('❌ Erreur réseau : ' + e.message, 'err');
+    }
   }
 
   function renderStudent(group){
@@ -124,22 +199,86 @@ header.app-head{display:flex;align-items:center;justify-content:space-between;fl
           <b>~${Math.min(15, 10 + dayNum * 2)} min</b>
         </div>
       </div>
-      ${qs.map(q => `
-        <div class="question">
-          <div class="question__date">${fmtDate(q.created_at)} · <span class="status-pill ${q.status}">${statusLabel(q.status)}</span></div>
-          <div class="question__title">${escapeHtml(q.initial)}</div>
-          ${q.vraie_problematique ? `<div class="question__detail"><strong>Vraie problématique :</strong> ${escapeHtml(q.vraie_problematique)}</div>` : ''}
-          ${q.vrai_besoin ? `<div class="question__detail" style="margin-top:6px"><strong>Vrai besoin :</strong> ${escapeHtml(q.vrai_besoin)}</div>` : ''}
-          ${q.question_finale ? `<div class="question__finale">${escapeHtml(q.question_finale)}</div>` : ''}
-        </div>
-      `).join('')}
+      ${qs.map(q => renderQuestion(q)).join('')}
     </div>`;
   }
+
+  function renderQuestion(q){
+    const actionable = q.status === 'awaiting_djibril' || q.status === 'awaiting_admin' || q.status === 'qualified';
+    return `<div class="question" id="q-${escapeHtml(q.id)}">
+      <div class="question__date">${fmtDate(q.created_at)} · <span class="status-pill ${q.status}">${statusLabel(q.status)}</span></div>
+      <div class="question__title">${escapeHtml(q.initial)}</div>
+      ${q.vraie_problematique ? `<div class="question__detail"><strong>Vraie problématique :</strong> ${escapeHtml(q.vraie_problematique)}</div>` : ''}
+      ${q.vrai_besoin ? `<div class="question__detail" style="margin-top:6px"><strong>Vrai besoin :</strong> ${escapeHtml(q.vrai_besoin)}</div>` : ''}
+      ${q.question_finale ? `<div class="question__finale">${escapeHtml(q.question_finale)}</div>` : ''}
+      ${actionable ? renderActions(q.id) : ''}
+      <div class="answer-area" id="answer-area-${escapeHtml(q.id)}" style="display:none"></div>
+    </div>`;
+  }
+
+  function renderActions(qId){
+    return `<div class="answer-actions" id="actions-${escapeHtml(qId)}">
+      <button class="btn btn--answer" onclick="window._openAnswer('${escapeHtml(qId)}')">J'Y RÉPONDS MAINTENANT</button>
+      <button class="btn btn--live" onclick="window._markAsLive('${escapeHtml(qId)}')">TRAITÉ EN LIVE</button>
+    </div>`;
+  }
+
+  window._openAnswer = function(qId){
+    const area = document.getElementById('answer-area-' + qId);
+    const actions = document.getElementById('actions-' + qId);
+    if(!area) return;
+    area.style.display = 'block';
+    if(actions) actions.style.display = 'none';
+    area.innerHTML = `
+      <textarea id="answer-txt-${qId}" placeholder="Écris ta réponse pour l'élève…" maxlength="2000"></textarea>
+      <div class="answer-actions-submit">
+        <button class="btn-submit" id="btn-submit-${qId}" onclick="window._submitAnswer('${qId}')">Envoyer la réponse →</button>
+        <button class="btn-cancel" onclick="window._cancelAnswer('${qId}')">Annuler</button>
+      </div>
+      <div id="answer-msg-${qId}"></div>
+    `;
+    setTimeout(() => document.getElementById('answer-txt-' + qId)?.focus(), 100);
+  };
+
+  window._submitAnswer = async function(qId){
+    const txt = document.getElementById('answer-txt-' + qId);
+    const btn = document.getElementById('btn-submit-' + qId);
+    const msg = document.getElementById('answer-msg-' + qId);
+    if(!txt || !txt.value.trim() || txt.value.trim().length < 5){
+      if(msg) msg.innerHTML = '<div class="answer-msg err">Réponse trop courte (min 5 caractères)</div>';
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Envoi…';
+    if(msg) msg.innerHTML = '<div class="answer-msg ok">Envoi en cours…</div>';
+    await answerQuestion(qId, txt.value.trim(), () => {
+      // Refresh après succès
+      setTimeout(load, 500);
+    });
+  };
+
+  window._cancelAnswer = function(qId){
+    const area = document.getElementById('answer-area-' + qId);
+    const actions = document.getElementById('actions-' + qId);
+    if(area) area.style.display = 'none';
+    if(actions) actions.style.display = 'flex';
+  };
+
+  window._markAsLive = function(qId){
+    const actions = document.getElementById('actions-' + qId);
+    const badge = document.querySelector(`#q-${qId} .status-pill`);
+    if(actions){
+      actions.innerHTML = '<span style="font-family:var(--mono);font-size:10px;color:var(--ink-mute)">Marquage en cours…</span>';
+    }
+    markAsLive(qId, () => {
+      setTimeout(load, 500);
+    });
+  };
 
   async function load(){
     document.getElementById('content').innerHTML = '<div class="empty">Chargement…</div>';
     try {
-      const r = await fetch(API);
+      const r = await fetch(API_BASE);
       if(r.status === 401){
         document.getElementById('content').innerHTML = '<div class="error">Token invalide. Vérifie l\'URL d\'accès.</div>';
         return;
@@ -162,10 +301,13 @@ header.app-head{display:flex;align-items:center;justify-content:space-between;fl
         '<span>Fenêtre depuis <b>' + sinceDate.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'short'}) + '</b></span>' +
         '<span>Dernier live : <b>' + d.window.last_live + '</b></span>' +
         '<span>Reset auto à minuit le lendemain du prochain live</span>';
-      // Stats
+      // Stats with pending count
+      const allQs = (d.students || []).flatMap(s => s.questions || []);
+      const pendingQs = allQs.filter(q => q.status === 'awaiting_djibril' || q.status === 'awaiting_admin' || q.status === 'qualified');
       document.getElementById('stats').innerHTML =
         '<div class="stat"><b>' + d.total_students + '</b><span>élèves cette semaine</span></div>' +
         '<div class="stat"><b>' + d.total_questions + '</b><span>questions au total</span></div>' +
+        '<div class="stat"><b>' + pendingQs.length + '</b><span>à répondre</span></div>' +
         '<div class="stat"><b>~' + Math.max(1, Math.round(d.total_students * 12.5)) + ' min</b><span>temps live estimé</span></div>';
       // Content
       if(d.students.length === 0){
